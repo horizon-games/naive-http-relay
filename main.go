@@ -32,14 +32,14 @@ func main() {
 	}
 
 	fmt.Printf("listening on http://0.0.0.0:%v\n\n", port)
-	fmt.Printf("error: %v\n", http.ListenAndServe(fmt.Sprintf(":%v", port), &Relayer{}))
+	fmt.Printf("error: %v\n", http.ListenAndServe(fmt.Sprintf(":%v", port), &Relay{}))
 }
 
-type Relayer struct {
+type Relay struct {
 	client http.Client
 }
 
-func (r *Relayer) ServeHTTP(writer http.ResponseWriter, request *http.Request) {
+func (r *Relay) ServeHTTP(writer http.ResponseWriter, request *http.Request) {
 	body, err := io.ReadAll(request.Body)
 	if err != nil {
 		writer.WriteHeader(http.StatusInternalServerError)

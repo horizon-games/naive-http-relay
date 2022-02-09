@@ -1,4 +1,4 @@
-module github.com/horizon-games/naive-http-relayer
+module github.com/horizon-games/naive-http-relay
 
 go 1.16
 
