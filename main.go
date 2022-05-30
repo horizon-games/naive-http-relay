@@ -66,6 +66,7 @@ func (r *Relay) ServeHTTP(writer http.ResponseWriter, request *http.Request) {
 		fmt.Printf("error: %v\n\n", err)
 	}
 
+	start := time.Now()
 	response, err := r.client.Do(rawRequest)
 	if err != nil {
 		writer.WriteHeader(http.StatusInternalServerError)
@@ -93,7 +94,7 @@ func (r *Relay) ServeHTTP(writer http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	fmt.Printf("%v\n", response.Status)
+	fmt.Printf("%v (%v)\n", response.Status, time.Since(start))
 	for name, values := range response.Header {
 		fmt.Printf("%v: %v\n", name, strings.Join(values, ","))
 	}
