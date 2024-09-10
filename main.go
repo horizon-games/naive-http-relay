@@ -119,6 +119,7 @@ func (r *Relay) ServeHTTP(writer http.ResponseWriter, request *http.Request) {
 			writer.Header().Add(name, value)
 		}
 	}
+	writer.Header().Add("Access-Control-Allow-Origin", "*")
 	writer.WriteHeader(response.StatusCode)
 	_, err = writer.Write(body)
 	if err != nil {
